@@ -10,7 +10,7 @@ const MakeAmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { email };
-    fetch('http://localhost:5000/user/admin', {
+    fetch('https://infinite-retreat-54842.herokuapp.com/user/admin', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

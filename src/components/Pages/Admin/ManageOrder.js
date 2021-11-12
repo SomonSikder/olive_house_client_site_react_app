@@ -5,7 +5,7 @@ const ManageOrder = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/order')
+    fetch('https://infinite-retreat-54842.herokuapp.com/order')
       .then((res) => res.json())
       .then((data) => setAllOrders(data));
   }, []);
@@ -13,7 +13,7 @@ const ManageOrder = () => {
   const handleDelete = (id) => {
     const procced = window.confirm('Are sure want to Delete?');
     if (procced) {
-      const url = `http://localhost:5000/order/${id}`;
+      const url = `https://infinite-retreat-54842.herokuapp.com/order/${id}`;
       fetch(url, {
         method: 'DELETE',
       })
