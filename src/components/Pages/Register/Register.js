@@ -71,7 +71,7 @@ const Register = () => {
   // Save user to the database
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    fetch("http://localhost:5000/user", {
+    fetch("https://infinite-retreat-54842.herokuapp.com/user", {
       method: method,
       headers: {
         "content-type": "application/json",

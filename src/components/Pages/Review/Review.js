@@ -8,7 +8,7 @@ const Review = () => {
 
   const onSubmit = (data) => {
     data.img = user.photoURL;
-    fetch("http://localhost:5000/review", {
+    fetch("https://infinite-retreat-54842.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

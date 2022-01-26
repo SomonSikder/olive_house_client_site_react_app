@@ -15,7 +15,7 @@ const Order = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://infinite-retreat-54842.herokuapp.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [id]);
@@ -23,7 +23,7 @@ const Order = () => {
   const onSubmit = (data) => {
     data.orderInfo = order;
 
-    fetch(`http://localhost:5000/order`, {
+    fetch(`https://infinite-retreat-54842.herokuapp.com/order`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
