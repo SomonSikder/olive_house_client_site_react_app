@@ -1,20 +1,20 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    fetch('https://infinite-retreat-54842.herokuapp.com/products', {
-      method: 'POST',
+    fetch("http://localhost:5000/products", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {
-        alert('Sucessfully Product Added');
+        alert("Sucessfully Product Added");
         reset();
       });
   };
@@ -28,22 +28,22 @@ const AddProduct = () => {
             className="form-control shadow"
           >
             <input
-              {...register('name')}
+              {...register("name")}
               placeholder="Product Name"
               className="form-control my-2"
             />
             <input
-              {...register('img')}
+              {...register("img")}
               placeholder="Product Img Link"
               className="form-control my-2"
             />
             <textarea
-              {...register('description')}
+              {...register("description")}
               placeholder="Product Description"
               className="form-control my-2"
             />
             <input
-              {...register('price')}
+              {...register("price")}
               placeholder="Product Price"
               className="form-control my-2"
             />

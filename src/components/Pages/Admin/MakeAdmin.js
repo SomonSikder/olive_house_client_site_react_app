@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const MakeAmin = () => {
-  const [email, setEmail] = useState('');
+const MakeAdmin = () => {
+  const [email, setEmail] = useState("");
 
   const [success, setSuccess] = useState(false);
   const handleOnBlur = (e) => {
@@ -10,10 +10,10 @@ const MakeAmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { email };
-    fetch('https://infinite-retreat-54842.herokuapp.com/user/admin', {
-      method: 'PUT',
+    fetch("http://localhost:5000/user/admin", {
+      method: "PUT",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(user),
     })
@@ -21,11 +21,11 @@ const MakeAmin = () => {
       .then((data) => {
         if (data.modifiedCount) {
           setSuccess(true);
-          setEmail('');
+          setEmail("");
         }
       });
   };
-  console.log(success);
+
   return (
     <div className="shadows">
       <div className="text-center">
@@ -44,15 +44,15 @@ const MakeAmin = () => {
           />
         </form>
         {success ? (
-          <div class="alert alert-success" role="alert">
+          <div className="alert alert-success" role="alert">
             Successfully Added An Admin!
           </div>
         ) : (
-          ''
+          ""
         )}
       </div>
     </div>
   );
 };
 
-export default MakeAmin;
+export default MakeAdmin;

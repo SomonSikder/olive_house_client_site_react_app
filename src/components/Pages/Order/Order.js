@@ -1,47 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
-import useAuth from '../../../Hooks/useAuth';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
+import useAuth from "../../../Hooks/useAuth";
+import { Alert, Button } from "react-bootstrap";
 
 const Order = () => {
   const { user } = useAuth();
   const [order, setOrder] = useState({});
   const { id } = useParams();
   const { register, handleSubmit, reset } = useForm();
+  const [success, setSuccess] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`https://infinite-retreat-54842.herokuapp.com/products/${id}`)
+    fetch(`http://localhost:5000/products/${id}`)
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [id]);
 
   const onSubmit = (data) => {
-    order.info = data;
-    fetch('https://infinite-retreat-54842.herokuapp.com/order', {
-      method: 'POST',
+    data.orderInfo = order;
+
+    fetch(`http://localhost:5000/order`, {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
-      body: JSON.stringify(order),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.insertedId) {
-          alert('Successfully Placed');
           reset();
-          history.push('/myOrder');
         }
       });
+    setSuccess(true);
   };
 
+  const seeOrders = () => {
+    history.push("/myOrder");
+  };
   return (
     <div className="container pt-5">
       <div className="row mt-5 pt-5">
         <div className="col-lg-6">
-          <div className="card mb-3" style={{ maxWidth: ' 540px' }}>
+          <div className="card mb-3" style={{ maxWidth: " 540px" }}>
             <div className="row g-0">
               <div className="col-md-4">
                 <img
@@ -67,30 +72,42 @@ const Order = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="form-control py-4">
             <input
               defaultValue={user.displayName}
-              {...register('name')}
+              {...register("name")}
               placeholder="Name"
               className="form-control my-2"
             />
             <input
               defaultValue={user.email}
-              {...register('email')}
+              {...register("email")}
               placeholder="Email"
               className="form-control my-2"
             />
             <input
-              {...register('address')}
+              {...register("address")}
               placeholder="Address"
               className="form-control my-2"
             />
             <input
-              {...register('phone')}
+              {...register("phone")}
               placeholder="Phone"
               className="form-control my-2"
             />
-            <input type="submit" className="btn btn-info" value="Place Order" />
+            <input
+              type="submit"
+              className="btn btn-warning"
+              value="Place Order"
+            />
           </form>
         </div>
       </div>
+      {success && (
+        <Alert variant="success" className="text-center">
+          Successfully done your order !!{" "}
+          <Button onClick={seeOrders} className="btn-warning">
+            See your order
+          </Button>
+        </Alert>
+      )}
     </div>
   );
 };

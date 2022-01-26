@@ -1,7 +1,5 @@
-import React from 'react';
-
 const SingleOrder = ({ product, handleDelete }) => {
-  const { name, img, price, _id } = product;
+  const { name, img, price } = product.orderInfo;
 
   return (
     <div className="card mb-3 shadow-lg">
@@ -19,7 +17,7 @@ const SingleOrder = ({ product, handleDelete }) => {
             <h5 className="card-title">{name}</h5>
             <p className="card-text text-danger">Price : $ {price}</p>
             <button
-              onClick={() => handleDelete(_id)}
+              onClick={() => handleDelete(product._id)}
               className="btn btn-danger"
             >
               Cancle Order

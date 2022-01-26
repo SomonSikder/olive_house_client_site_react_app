@@ -2,14 +2,15 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
-} from 'firebase/auth';
-import { useEffect, useState } from 'react';
-import initializeAuthentication from '../firebase/firebaseInit';
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import initializeAuthentication from "../firebase/firebaseInit";
 
 initializeAuthentication();
 
@@ -19,6 +20,7 @@ const useFirebase = () => {
   const [admin, setAdmin] = useState(false);
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   // Create Account with email & password
   const createWithEmailAndPassword = (email, password) => {
@@ -48,6 +50,10 @@ const useFirebase = () => {
   };
 
   // Sign in with Facebook Account
+  const signInWithFacebook = () => {
+    return signInWithPopup(auth, facebookProvider);
+  };
+  // Sign in with Facebook Account
 
   const logOut = () => {
     signOut(auth)
@@ -73,10 +79,11 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    fetch(`https://infinite-retreat-54842.herokuapp.com/user/${user.email}`)
+    fetch(`http://localhost:5000/user/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data));
   }, [user.email]);
+  // console.log(admin);
   return {
     user,
     admin,
@@ -87,6 +94,7 @@ const useFirebase = () => {
     updateName,
     signInWithEmail,
     signInWithGoogle,
+    signInWithFacebook,
     logOut,
   };
 };

@@ -1,19 +1,28 @@
-import React from 'react';
-import YouTube from 'react-youtube';
+import React from "react";
+import YouTube from "react-youtube";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Tutorial = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const opts = {
-    height: '390',
-    width: '640',
+    height: "390",
+    width: "640",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: false,
     },
   };
   return (
-    <div className="container mx-auto d-flex justify-content-center my-5">
+    <div
+      data-aos="flip-left"
+      className="container mx-auto d-flex justify-content-center my-5"
+    >
       <div>
-        <h2 className="text-center text-info my-3">Learn With Us</h2>
+        <h2 className="text-center text-warning my-3">Learn With Us</h2>
         <YouTube videoId="uOx14qaAglE" opts={opts} />
       </div>
     </div>

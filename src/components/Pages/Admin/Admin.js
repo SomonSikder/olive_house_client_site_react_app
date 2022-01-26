@@ -1,10 +1,10 @@
-import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import React from "react";
+import { Dropdown } from "react-bootstrap";
 
-import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
-import AddProduct from './AddProduct';
-import MakeAmin from './MakeAmin';
-import ManageOrder from './ManageOrder';
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import AddProduct from "./AddProduct";
+import MakeAmin from "./MakeAdmin";
+import ManageOrder from "./ManageOrder";
 
 const Admin = () => {
   let { path, url } = useRouteMatch();
@@ -25,7 +25,7 @@ const Admin = () => {
                   to={`${url}/makeAdmin`}
                   className="text-decoration-none mx-2 text-info"
                 >
-                  Make Admin
+                  Make an Admin
                 </Link>
               </Dropdown.Item>
               <Dropdown.Item>

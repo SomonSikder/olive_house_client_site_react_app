@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <div className="bg-light mt-4">
+    <div data-aos="fade-down" className="bg-dark py-4">
       <div className="container pt-3">
-        <div className="row container text-center text-info">
+        <div className="row container text-center text-warning">
           <div className="col-lg-4">
-            <h2 className="">Olive</h2>
+            <h2 className="font-style">Olive House</h2>
           </div>
           <div className="col-lg-4">
             <h3>Follow Us</h3>
@@ -31,9 +37,9 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* <div className="">
-        <p className="">&copy; 2021 Tour Guide. All right reserve.</p>
-      </div> */}
+      <p className="text-light text-center">
+        &copy; 2022 Olive. All right reserve.
+      </p>
     </div>
   );
 };
