@@ -4,14 +4,14 @@ Live Project Link Is Here (https://olive-house-e466d.web.app/).
 
 ## Available Scripts
 
-*JSX
-*CSS
-*Bootstrap
-*React Library
-*Firebase
-*Express
-*MongoDB
-*Firebase Authentication 
+* JSX
+* CSS
+* Bootstrap
+* React Library
+* Firebase
+* Express
+* MongoDB
+* Firebase Authentication 
 
 ## Features
 
